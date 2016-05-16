@@ -203,13 +203,13 @@ CanvasDisplay.prototype.drawVignette = function() {
       y: (this.offscreen.height / 2) + photo.offset[1]
     };
     if (scaledValues.width > scaledValues.height) {
-      var radius = scaledValues.width / 2;
-    } else {
       var radius = scaledValues.height / 2;
+    } else {
+      var radius = scaledValues.width / 2;
     }
     var grd = this.offscreenCx.createRadialGradient(
                 center.x, center.y, 0,
-                center.x, center.y, radius / 2);
+                center.x, center.y, 0.8 * radius);
 
     grd.addColorStop(0, 'rgba(' + this.fillColor[0] + ', ' +
                                   this.fillColor[1] + ', ' +
@@ -297,13 +297,9 @@ Photo.prototype.scaleToDisplay = function(hypotenuse) {
   var ratio = newHeight / this.img.height;
   var newWidth = this.img.width * ratio;
 
-  var newX = this.offset[0] * ratio / 2;
-  var newY = this.offset[1] * ratio / 2;
-
   return {
     width: newWidth,
-    height: newHeight,
-    offset: [newX, newY]
+    height: newHeight
   }
 };
 
