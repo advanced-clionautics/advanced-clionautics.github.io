@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Advanced Clionautics</title>
+    <link rel="stylesheet" href="includes/reset.css" />
+    <link rel="stylesheet" href="includes/styles.css" />
+  </head>
+  <body>
+    <div id="logoBox">
+      <canvas></canvas>
+    </div>
+    <div id="page">
+      <img src="images/adv-clio.png" id="mainLogo" class="logo" />
+      <div class="content">
+        <p>
+          Advanced Clionautics is <a href="http://www.christopherheaney.net">Christopher Heaney</a>, <a href="http://brianjon.es">Brian Jones</a>, and <a href="http://amykohout.com">Amy Kohout</a>.
+        </p>
+        <p>
+          <a href="mailto:howdy@clionautics.co">howdy@clionautics.co</a>
+        </p>
+        <h3>Projects</h3>
+        <ul>
+          <li>
+            <span class="big"><a href="http://backlist.cc">Backlist</a></span>
+            <span class="details">
+              <a href="http://twitter.com/bcklst">Twitter</a> • 
+              <a href="http://facebook.com/BacklistHistory">Facebook</a>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="includes/scripts.js"></script>
+    <script>
+      window.addEventListener('load', function() {
+        logoHeader = new CanvasDisplay(
+          document.getElementById('logoBox').querySelector('canvas'),
+          [0, 55, 113]);
+
+        logoHeader.addPhotos(
+          'images/archival/9458992560_5a49118cde_o.jpg',
+          'images/archival/13088369343_07b854d46e_o.jpg',
+          'images/archival/El_juramento_de_las_Cortes_de_Cadiz_en_1810.jpg'
+          );
+
+        logoHeader.addOrbitals(
+          {},
+          {
+            stroke: 3,
+            offsetRatio: { x: 0.25, y: 0.05 },
+            relativeRadius: 0.33,
+            dashes: [3, 4, 8],
+            alpha: 0.2,
+            spin: -3,
+            color: '#FFFF66'
+          },
+          {
+            stroke: 2,
+            offsetRatio: { x: -0.4, y: -0.1 },
+            relativeRadius: 1.5,
+            dashes: [2, 2],
+            spin: -2,
+            color: '#FFFF66'
+          },
+          {
+            offsetRatio: { x: 0.8, y: 0.4 },
+            relativeRadius: .5,
+            dashes: [4, 2, 8, 2],
+            spin: 5,
+            color: '#FFFF66'
+          },
+          {
+            offsetRatio: { x: -0.3333, y: 0.1 },
+            relativeRadius: 1.1,
+            dashes: [5, 3, 1, 1],
+            alpha: 0.4
+          });
+
+        requestAnimationFrame(frame);
+
+        repositionPage();
+
+        window.addEventListener('resize', function() {
+          logoHeader.resize();
+          repositionPage();
+        });
+      });
+
+    </script>
+  </body>
+</html>
