@@ -176,7 +176,6 @@ CanvasDisplay.prototype.drawStars = function() {
   this.offscreenCx.save();
   this.offscreenCx.translate(this.canvas.width, this.canvas.height);
   this.offscreenCx.rotate(this.ticks * .0001 * Math.PI);
-  console.log(this.ticks * .0001 * Math.PI);
   for (var i = 0; i < this.stars.length; i++) {
     var star = this.stars[i];
 
@@ -251,10 +250,12 @@ CanvasDisplay.prototype.stepPhotos = function() {
   var lastTick = this.ticks;
 
   this.ticks = Math.floor(this.animationTime * 48);
-  if (this.ticks > lastTick) {
-    photo.offset[0] += photo.trajectory[0];
-    photo.offset[1] += photo.trajectory[1];
-    photo.life--;
+  if (photo.available()) {
+    if (this.ticks > lastTick) {
+      photo.offset[0] += photo.trajectory[0];
+      photo.offset[1] += photo.trajectory[1];
+      photo.life--;
+    }
   }
 
   if (photo.life <= 0) {
@@ -282,8 +283,8 @@ Photo.prototype.available = function() {
 
 Photo.prototype.reset = function() {
   this.trajectory = [ 
-     Math.floor(Math.random() * 5) - 2, // -2, -1, 0, 1, 2
-     Math.floor(Math.random() * 5) - 2  // -2, -1, 0, 1, 2
+     Math.floor(Math.random() * 3) - 1, // -1, 0, 1
+     Math.floor(Math.random() * 3) - 1 // -1, 0, 1
   ];
   this.offset = [0, 0];
   this.life = 500;
